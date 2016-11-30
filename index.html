@@ -1,0 +1,38 @@
+<html>
+<head>
+<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+<script src="node_modules/jquery/dist/jquery.js"></script>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+</head>
+<body>
+    <p>First name: <strong data-bind="text: firstName"></strong></p>
+    <p>Last name: <strong data-bind="text: lastName"></strong></p>
+    <p>Full name: <strong data-bind="text: fullName"></strong></p>
+    
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-default" data-bind="click: click">Go!</button>
+    </span>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <td>Name</td>
+                <td>Value</td>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: arr">
+            <tr>
+                <td data-bind="text: name"></td>
+                <td data-bind="text: value"></td>
+                <td><button data-bind="click: $root.removeProduct">Remove</button></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <button type="button" class="btn btn-primary" data-bind="click: addProduct">Add</button>
+    
+<script src="app.js"></script>
+</body>
+</html>
+ 
