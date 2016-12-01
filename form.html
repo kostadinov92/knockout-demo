@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <title>Interactive bindings</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+
+<body>
+    <h1>Interactive bindings</h1>
+    <form action="#" , method="POST">
+        <p data-bind="event: {mouseover : function(data, event){
+            showDetails(data, event, 'firstName');
+            }, mouseout: hideDetails}">First name:
+            <input data-bind="value: firstName" />
+            <span data-bind="visible: details() == 'firstName'">Your given name</span>
+        </p>
+        <p data-bind="event: {mouseover : function(data, event){
+            showDetails(data, event, 'lastName');
+            }, mouseout: hideDetails}">Last name:
+            <input data-bind="value: lastName" />
+            <span data-bind="visible: details() == 'lastName'">Your sirname</span>
+        </p>
+        <p>Primary phone:
+            <input data-bind="value: primaryPhone, hasFocus: primaryPhoneHasFocus" />
+        </p>
+        <p>Secondary phone:
+            <input data-bind="value: secondaryPhone, visible: primaryPhone" />
+        </p>
+        <p>Annoy me with special offers.<input data-bind="checked: annoyMe" type="checkbox" /></p>
+        <div data-bind="visible: annoyMe">
+            <div>
+                <input data-bind="checked: annoyTimes" type="checkbox" value="morning" /> In the morning
+            </div>
+            <div>
+                <input data-bind="checked: annoyTimes" type="checkbox" value="afternoon" /> In the afternoon
+            </div>
+            <div>
+                <input data-bind="checked: annoyTimes" type="checkbox" value="evening" /> In the evening
+            </div>
+        </div>
+        <hr/ data-bind="visible: annoyMe">
+            <div data-bind="visible: annoyMe">
+                <div>
+                    <input data-bind="checked: annoyTimesRadio" type="radio" value="morning" name="annoyGroup" /> In the
+                    morning
+                </div>
+                <div>
+                    <input data-bind="checked: annoyTimesRadio" type="radio" value="afternoon" name="annoyGroup" /> In the
+                    afternoon
+                </div>
+                <div>
+                    <input data-bind="checked: annoyTimesRadio" type="radio" value="evening" name="annoyGroup" /> In the
+                    evening
+                </div>
+            </div>
+            <div data-bind="visible: annoyMe">
+                <select data-bind="options: annoyTimesOptions, value: selectedTimes"></select>
+            </div>
+            <p><button data-bind="click: logData">Log view model</button></p>
+            <p><button data-bind="click: setName">Set Name</button></p>
+            <p><button data-bind="click: saveUserData" type="button" class="btn btn-default">Submit</button></p>
+
+            <select data-bind="options: products, optionsText: 'name', value: selectedProduct"></select>
+
+    </form>
+    <script src="node_modules/jquery/dist/jquery.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/knockout/build/output/knockout-latest.debug.js"></script>
+    <script src="form.js"></script>
+</body>
+
+</html>

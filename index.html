@@ -14,18 +14,38 @@
         <button type="button" class="btn btn-default" data-bind="click: click">Go!</button>
     </span>
     
+    <p data-bind="with: featuredProduct">
+        Do you need <span data-bind="html: formatedName"></span>?<br/>
+        Get one for only: <strong data-bind="text: value"></strong>.
+    </p>
+
     <table class="table">
         <thead>
             <tr>
+                <td>Index</td>
                 <td>Name</td>
                 <td>Value</td>
+                <td>Tags</td>
             </tr>
         </thead>
         <tbody data-bind="foreach: arr">
             <tr>
+                <td data-bind="text: $index"></td>
                 <td data-bind="text: name"></td>
                 <td data-bind="text: value"></td>
+                <td>
+                    <ul data-bind="foreach: tags">
+                        <li>
+                            <span data-bind="text: $parent.name"></span>
+                            <span data-bind="text: $data"></span>
+                        </li>
+                    </ul>
+                </td>
                 <td><button data-bind="click: $root.removeProduct">Remove</button></td>
+                <td data-bind="if: discount() > 0" class="text" style="color: red;">
+                    You saved 
+                    <span data-bind="text: formatedDiscount"></span> !!!
+                </td>
             </tr>
         </tbody>
     </table>
